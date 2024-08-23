@@ -17,6 +17,8 @@ extern void add_new_file(const char * const name);
 
 using namespace std;
 
+bool is_no_system = false;
+
 static inline
 void init_graph(void) {
     g = agopen("G", Agdirected, NULL);
@@ -35,6 +37,11 @@ void finish_graph() {
 }
 
 void append_node(const char * const name, const char * const parent, const node_t type) {
+    if (type == SYSTEM
+    &&  is_no_system) {
+        return;
+    }
+
     Agnode_t * new_node;
     dagnode(new_node, name);
 
@@ -56,13 +63,25 @@ void append_node(const char * const name, const char * const parent, const node_
 
 signed main(const int argc, const char * const argv[]) {
     if (argc < 2) {
+        printf("%s [options] <files>\n", argv[0]);
         return 1;
+    }
+
+
+    int file_index = 1;
+
+    for (; file_index < argc; file_index++) {
+        if (argv[file_index][0] != '-') { break; }
+
+        if (!strcmp(argv[file_index], "-s")) {
+            is_no_system = true;
+        }
     }
 
     init_graph();
 
-    for (int i = 1; i < argc; i++) {
-        add_new_file(argv[i]);
+    for (; file_index < argc; file_index++) {
+        add_new_file(argv[file_index]);
     }
 
     yylex();
