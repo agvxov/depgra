@@ -26,7 +26,7 @@ else
   CFLAGS += -O3 -flto=auto -fno-stack-protector
 endif
 
-OUT := a.out
+OUT := depgra
 
 # --- Rule Section ---
 
@@ -42,7 +42,8 @@ ${OBJECT.d}/%.o: ${SOURCE.d}/%.cpp
 clean:
 	-rm ${GENSOURCE}
 	-rm ${OBJECT}
+	-rm ${OUT}
 
 test:
-	./script debug/dummy_c_project/*.c
+	./bepgra debug/dummy_c_project/*.c
 	nomacs output.png

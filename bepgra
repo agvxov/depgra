@@ -1,4 +1,4 @@
 #!/bin/bash
 
-a.out $@
+depgra $@
 dot -Tpng -o output.png c.dot
