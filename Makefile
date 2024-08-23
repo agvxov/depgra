@@ -15,7 +15,7 @@ GENOBJECT := $(subst .cpp,.o,${GENSOURCE})
 
 # --- Tools/Flags
 LDLIBS   := -lgvc -lcgraph
-CPPFLAGS := -Iobject/
+CPPFLAGS := -Iobject/ -Isource/
 
 ifeq (${DEBUG}, 1)
   LFLAGS     += --debug --trace
@@ -35,6 +35,9 @@ ${OUT}: ${GENSOURCE} ${GENOBJECT} ${OBJECT}
 
 ${OBJECT.d}/%.yy.cpp: ${SOURCE.d}/%.l
 	flex ${FLEXFLAGS} --header-file=object/$(basename $(notdir $<)).yy.h -o $@ $<
+
+${OBJECT.d}/%.yy.o: ${OBJECT.d}/%.yy.cpp
+	${COMPILE.cpp} -o $@ $<
 
 ${OBJECT.d}/%.o: ${SOURCE.d}/%.cpp
 	${COMPILE.cpp} -o $@ $<
