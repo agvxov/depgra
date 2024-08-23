@@ -1,0 +1,4 @@
+#!/bin/bash
+
+a.out $@
+dot -Tpng -o output.png c.dot

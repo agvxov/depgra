@@ -1,0 +1,6 @@
+*.o
+*.yy.*
+*.out
+*.dot
+output.png
+.gdb_history
