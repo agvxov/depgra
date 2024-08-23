@@ -14,7 +14,8 @@ GENSOURCE := $(addprefix ${OBJECT.d}/,${GENSOURCE})
 GENOBJECT := $(subst .cpp,.o,${GENSOURCE})
 
 # --- Tools/Flags
-LDLIBS := -lgvc -lcgraph
+LDLIBS   := -lgvc -lcgraph
+CPPFLAGS := -Iobject/
 
 ifeq (${DEBUG}, 1)
   LFLAGS     += --debug --trace
@@ -39,8 +40,8 @@ ${OBJECT.d}/%.o: ${SOURCE.d}/%.cpp
 	${COMPILE.cpp} -o $@ $<
 
 clean:
-	#-rm ${GENSOURCE}
-	#-rm ${OBJECT}
+	-rm ${GENSOURCE}
+	-rm ${OBJECT}
 
 test:
 	./script debug/dummy_c_project/*.c

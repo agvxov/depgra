@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <graphviz/cgraph.h>
 #include "node_t.h"
-#include "include_lexer.h"
+#include "include_lexer.yy.h"
 
 #define OUTPUT_FILE_NAME "c.dot"
 
