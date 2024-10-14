@@ -30,3 +30,6 @@ but i dont mind being less generic if the visualization is better
 
 ctags cant do this (--extras=+referece only indexes the preprocessor),
 i will have to use treesitter.
+
+### Note
++ [pydeps](https://github.com/thebjorn/pydeps)
