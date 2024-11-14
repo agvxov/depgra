@@ -14,6 +14,15 @@
      *  This could be easily resolved by adding IN_STRING and
      *   IN_COMMENT states.
      */
+    /* XXX:
+     *  We dont account for all ways to change states.
+     *  If the state stack is used, that will go unnoticed.
+     *  If the user BEGIN-s using a variable, that will cause an error.
+     *  We dont have any realistic way to tell what states these would result in.
+     *  For such situations a "?" state should be added to the graph.
+     *   It should point to all other states and have inputs only from
+     *   the appropriate states.
+     */
     #include <stdio.h>
     #include <graphviz/cgraph.h>
     #include <vector>
