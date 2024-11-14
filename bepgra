@@ -1,4 +1,36 @@
 #!/bin/bash
 
-depgra $@
-dot -Tpng -o output.png c.dot
+function usage() {
+    echo "Usage: ${0} [type] <file>"
+    echo "  depgra  - Generate a dependency graph"
+    echo "  flexgra - Generate a scanner graph"
+}
+
+if [[ $# -eq 0 ]]; then
+    usage
+    exit 1
+fi
+
+TYPE="depgra" # default value
+
+if [[ $# -eq 1 ]]; then
+    FILE="$1"
+else
+    TYPE="$1"
+    FILE="$2"
+fi
+
+case "$TYPE" in
+    depgra)
+        depgra "$FILE"
+        dot -Tpng -o dependency_graph.png c.dot
+        ;;
+    flexgra)
+        flexgra "$FILE"
+        dot -Tpng -o scanner_graph.png out.dot
+        ;;
+    *)
+        usage
+        exit 1
+        ;;
+esac
