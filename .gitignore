@@ -2,7 +2,13 @@
 *.yy.*
 *.out
 *.dot
+
 output.png
-.gdb_history
+dependency_graph.png
+scanner_graph.png
+
 depgra
+flexgra
+
+.gdb_history
 tags
