@@ -73,7 +73,7 @@ signed main(const int argc, const char * const argv[]) {
     for (; file_index < argc; file_index++) {
         if (argv[file_index][0] != '-') { break; }
 
-        if (!strcmp(argv[file_index], "-s")) {
+        if (!strcmp(argv[file_index], "-k")) {
             is_no_system = true;
         }
     }
