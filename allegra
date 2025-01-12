@@ -3,6 +3,7 @@
 function usage() {
     echo "Usage: ${0} [type [options]] <file>"
     echo "  depgra  - Generate a dependency graph"
+    echo "       -k : do not plot system headers"
     echo "  flexgra - Generate a scanner graph"
 }
 
