@@ -48,5 +48,5 @@ clean:
 	-rm ${OUT}
 
 test:
-	./bepgra debug/dummy_c_project/*.c
-	nomacs output.png
+	./allegra depgra debug/dummy_c_project/*.c
+	nomacs dependency_graph.png
