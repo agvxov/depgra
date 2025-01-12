@@ -26,11 +26,14 @@ else
   CFLAGS += -O3 -flto=auto -fno-stack-protector
 endif
 
-OUT := depgra
+# TODO: clean-up the flexgra target
+OUTS := depgra flexgra
 
 # --- Rule Section ---
 
-${OUT}: ${GENSOURCE} ${GENOBJECT} ${OBJECT}
+all: ${OUTS}
+
+depgra: ${GENSOURCE} ${GENOBJECT} ${OBJECT}
 	${LINK.cpp} -o $@ ${OBJECT} ${GENOBJECT} ${LDLIBS}
 
 ${OBJECT.d}/%.yy.cpp: ${SOURCE.d}/%.l
@@ -42,10 +45,14 @@ ${OBJECT.d}/%.yy.o: ${OBJECT.d}/%.yy.cpp
 ${OBJECT.d}/%.o: ${SOURCE.d}/%.cpp
 	${COMPILE.cpp} -o $@ $<
 
+flexgra:
+	flex ${FLEXFLAGS} -o object/flexgra.yy.c source/flexgra.l
+	g++ ${CFLAGS} -o flexgra object/flexgra.yy.c ${LDLIBS}
+
 clean:
 	-rm ${GENSOURCE}
 	-rm ${OBJECT}
-	-rm ${OUT}
+	-rm ${OUTS}
 
 test:
 	./allegra depgra debug/dummy_c_project/*.c
