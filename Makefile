@@ -55,5 +55,5 @@ clean:
 	-rm ${OUTS}
 
 test:
-	./allegra depgra debug/dummy_c_project/*.c
+	./allegra depgra -s debug/dummy_c_project/*.c
 	nomacs dependency_graph.png
